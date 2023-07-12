@@ -1,0 +1,71 @@
+Project Documentation: Syncing Data from PostgreSQL to Salesforce
+1. Project Overview
+This project is a Node.js application that periodically fetches data from a PostgreSQL database and updates a custom object in Salesforce. The app uses the jsforce and pg libraries for connecting to Salesforce and PostgreSQL respectively.
+
+2. Pre-requisites
+Node.js and npm installed.
+Salesforce account with API access.
+PostgreSQL database.
+Access to a system console (Command Line on Windows, Terminal on Mac).
+Text Editor like Visual Studio Code.
+3. Project Setup
+Step 1: Create a new Node.js application
+In your system console, navigate to the folder where you want to create your project. Run the following command to create a new Node.js application:
+
+bash
+Copy code
+mkdir SF_Postgres_Sync
+cd SF_Postgres_Sync
+npm init -y
+This will create a new folder for your project and initialize a new Node.js application.
+
+Step 2: Install required libraries
+Run the following command in your system console to install the required libraries:
+
+Copy code
+npm install jsforce pg dotenv
+This will install jsforce (for Salesforce), pg (for PostgreSQL), and dotenv (for managing environment variables).
+
+Step 3: Create a .env file
+Create a new file in your project folder named .env. This file will hold your Salesforce and PostgreSQL credentials:
+
+makefile
+Copy code
+SF_USERNAME=<your_salesforce_username>
+SF_PASSWORD=<your_salesforce_password>
+SF_TOKEN=<your_salesforce_security_token>
+SF_LOGIN_URL=https://login.salesforce.com
+PG_USER=<your_postgres_username>
+PG_HOST=<your_postgres_hostname>
+PG_DATABASE=<your_postgres_database>
+PG_PASSWORD=<your_postgres_password>
+PG_PORT=<your_postgres_port>
+Please replace <placeholders> with your actual credentials.
+
+Step 4: Create a server.js file
+Create a new file named server.js in your project folder. This is where you'll write your Node.js script.
+
+Step 5: Write your Node.js script
+Copy the script provided in the previous steps and paste it into your server.js file. Make sure to update the query and object mapping to match your actual PostgreSQL database and Salesforce custom object.
+
+4. Testing the Project
+To run your Node.js script, run the following command in your system console:
+
+Copy code
+node server.js
+Check if there are any errors. If there are, debug based on the error messages. If not, check your Salesforce custom object to see if the data from your Postgres database is correctly upserted.
+
+5. Deployment and Scheduling
+This project runs on-demand by executing the command node server.js. Depending on your requirements, you might want to schedule this command to run periodically. This can be done through various means depending on your operating system (e.g., cron jobs on Unix-like systems or Task Scheduler on Windows).
+
+Remember to handle this task with proper security measures, especially when deploying it on a server.
+
+6. Error Handling and Logging
+Consider adding more sophisticated error handling and logging to your script. This could include retrying the database connection if it fails, sending an alert if data fails to upsert to Salesforce, logging all operations to a file for future reference, etc.
+
+7. Security Measures
+Your .env file contains sensitive credentials. Make sure it is not accessible to unauthorized users. Also, ensure that your script is running in a secure environment.
+
+8. Future Enhancements
+This script can be improved in several ways, including adding a web interface for managing the sync operation, integrating with other databases, and more. These are left as exercises for future development.
+
